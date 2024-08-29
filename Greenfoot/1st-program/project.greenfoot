@@ -1,0 +1,12 @@
+#Greenfoot properties
+#Thu Aug 29 10:45:30 CEST 2024
+mainWindow.width=850
+class.Lobster.image=lobster.png
+class.MyWorld.superclass=greenfoot.World
+class.Lobster.superclass=greenfoot.Actor
+project.charset=UTF-8
+version=3.0.0
+world.lastInstantiated=MyWorld
+mainWindow.y=40
+mainWindow.x=40
+mainWindow.height=600
