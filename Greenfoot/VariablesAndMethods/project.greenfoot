@@ -1,0 +1,16 @@
+#Greenfoot properties
+#Mon Sep 02 10:15:34 CEST 2024
+class.Person.image=person.png
+class.Teddy.image=teddybear.png
+mainWindow.width=850
+class.OurPlanet.superclass=greenfoot.World
+project.charset=UTF-8
+version=3.0.0
+class.Tree.image=tree2.png
+class.Person.superclass=greenfoot.Actor
+world.lastInstantiated=OurPlanet
+mainWindow.y=40
+class.Teddy.superclass=greenfoot.Actor
+mainWindow.x=40
+mainWindow.height=600
+class.Tree.superclass=greenfoot.Actor
