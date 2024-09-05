@@ -1,0 +1,12 @@
+#Greenfoot properties
+#Thu Sep 05 09:32:57 CEST 2024
+class.PlayerCar.superclass=greenfoot.Actor
+mainWindow.width=850
+class.MyWorld.superclass=greenfoot.World
+class.PlayerCar.image=car03-n.png
+project.charset=UTF-8
+version=3.0.0
+world.lastInstantiated=MyWorld
+mainWindow.y=40
+mainWindow.x=40
+mainWindow.height=600
