@@ -9,5 +9,8 @@ public class EnemyCar extends Actor
     public void act() 
     {
         setLocation(getX(),getY()+3);
+        if(getY()>450){
+            getWorld().removeObject(this);
+        }
     }    
 }

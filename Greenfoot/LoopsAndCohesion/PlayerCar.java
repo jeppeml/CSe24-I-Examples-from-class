@@ -5,10 +5,6 @@ public class PlayerCar extends Actor
     private int health = 100;
     private Counter healthCounter = new Counter("Health:");
     
-    public PlayerCar(){
-        
-    }
-    
     public void addedToWorld(World world){
         world.addObject(healthCounter, 50, 20);
         healthCounter.setValue(health);
