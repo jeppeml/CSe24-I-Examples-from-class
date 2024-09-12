@@ -6,6 +6,7 @@ public class MyWorld extends World
     private static int worldWidth = 800;
     private static int worldHeight = 600;
     private List<Fly> flys = new ArrayList();
+    private int acts=0;
     public MyWorld()
     {    
         super(worldWidth, worldHeight, 1, false); 
@@ -21,6 +22,7 @@ public class MyWorld extends World
     }
 
     public void act(){
+        acts++;
         for(int i =0;i<flys.size();i++){
             Fly f = flys.get(i);
             if(f.getWorld()!=null){
@@ -31,10 +33,12 @@ public class MyWorld extends World
                 }
             }
 
-            Fly fly = new Fly();
-            flys.add(fly);
-            addObject(fly,f.getX(),f.getY());
         }
+        
 
+    }
+    
+    public void addFly(Fly f){
+        flys.add(f);
     }
 }
