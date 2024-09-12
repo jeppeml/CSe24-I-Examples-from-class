@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public abstract class Apple extends Actor
+public class Apple extends Actor
 {
     public static int numOfApples = 0;
     public int numOfApplesNonStatic = 0;
@@ -15,10 +15,8 @@ public abstract class Apple extends Actor
     {
         numOfApplesNonStatic++;
         numOfApples++;//Greenfoot.getRandomNumber(1000);
+        getWorld().getObjects(Apple.class).size();
     }   
     
-    public static void thisIsStatic(){
-    
-    }
     
 }

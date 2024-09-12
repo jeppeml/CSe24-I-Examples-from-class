@@ -1,0 +1,12 @@
+#Greenfoot properties
+#Thu Sep 12 10:09:55 CEST 2024
+mainWindow.width=850
+class.MyWorld.superclass=greenfoot.World
+class.Fly.image=fly.png
+project.charset=UTF-8
+version=3.0.0
+world.lastInstantiated=MyWorld
+mainWindow.y=40
+mainWindow.x=40
+class.Fly.superclass=greenfoot.Actor
+mainWindow.height=600
