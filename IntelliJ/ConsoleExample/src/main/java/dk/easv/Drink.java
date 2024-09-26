@@ -11,4 +11,14 @@ public class Drink {
         this.alcPercentage = alcPercentage;
     }
 
+    public double getAlcPercentage(){
+        return alcPercentage;
+    }
+
+    @Override
+    public String toString(){
+        return name + " - " + alcPercentage +
+                "% - " + price + " kr";
+    }
+
 }
