@@ -23,6 +23,18 @@ public class Main {
         System.out.println("#####***** Ye Olde Liquor Shop *****#####");
         for (int i = 0; i < drinks.size(); i++) {
             Drink current = drinks.get(i);
+<<<<<<< Updated upstream
+=======
+            if (age>=18){
+                System.out.println(i + " " + current);
+            }
+            else if (age>=16 && current.getAlcPercentage()<16.5){
+                System.out.println(i + " " + current);
+            }
+            else if(current.getAlcPercentage()<16.5){
+                System.out.println(i + " " + current);
+            }
+>>>>>>> Stashed changes
 
             if (age > 15 && current.getAlcPercentage() <= 16.5) {
                 System.out.println(current);
