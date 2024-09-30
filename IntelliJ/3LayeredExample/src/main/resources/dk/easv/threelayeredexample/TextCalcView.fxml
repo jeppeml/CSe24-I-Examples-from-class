@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.threelayeredexample.gui.TextCalcController">
+   <children>
+      <Label layoutX="34.0" layoutY="28.0" text="Results">
+         <font>
+            <Font size="65.0" />
+         </font>
+      </Label>
+      <Label layoutX="34.0" layoutY="200.0" prefHeight="27.0" prefWidth="457.0" text="Amount of chars in string">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblCompleteText" layoutX="37.0" layoutY="141.0" prefHeight="17.0" prefWidth="527.0" text="[ERROR]">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="37.0" layoutY="108.0" prefHeight="27.0" prefWidth="457.0" text="Input string">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblCharsCount" layoutX="37.0" layoutY="234.0" prefHeight="17.0" prefWidth="527.0" text="[ERROR]">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane minHeight="307.0" minWidth="499.0" prefHeight="307.0" prefWidth="512.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.threelayeredexample.gui.HelloController">
+   <children>
+       <Button layoutX="377.0" layoutY="272.0" minWidth="120.0" onAction="#onHelloButtonClick" text="Ok" />
+      <TextField fx:id="txtInput" layoutX="55.0" layoutY="90.0" prefHeight="26.0" prefWidth="403.0" />
+   </children>
+</AnchorPane>
