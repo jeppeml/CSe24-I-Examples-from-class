@@ -23,14 +23,15 @@ public class Main {
         System.out.println("#####***** Ye Olde Liquor Shop *****#####");
         for (int i = 0; i < drinks.size(); i++) {
             Drink current = drinks.get(i);
-            if (age<16 && current.getAlcPercentage()==0){
-                System.out.println(current);
+
+            if (age>=18){
+                System.out.println(i + " " + current);
             }
-             if (age<18 && current.getAlcPercentage()>0 && current.getAlcPercentage()<16.5){
-                System.out.println(current);
+            else if (age>=16 && current.getAlcPercentage()<16.5){
+                System.out.println(i + " " + current);
             }
-             if (age>=18){
-                System.out.println(current);
+            else if(current.getAlcPercentage()<16.5){
+                System.out.println(i + " " + current);
             }
 
         }
