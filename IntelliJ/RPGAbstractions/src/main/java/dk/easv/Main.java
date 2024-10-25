@@ -1,5 +1,8 @@
 package dk.easv;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world of RPG!");
@@ -23,9 +26,17 @@ public class Main {
 
         Wizard merlin = new Wizard("Merlin");
 
-        Player sterlin = new Player("Sterlin");
+        List<IDrawable> entities = new ArrayList<>();
+        entities.add(peter);
+        entities.add(ben);
+        entities.add(schitchy);
+        entities.add(merlin);
+        merlin.draw();
 
-        merlin.doMagicDamage(sterlin);
+            for (IDrawable p : entities) {
+                p.draw();
+            }
+
 
     }
 }

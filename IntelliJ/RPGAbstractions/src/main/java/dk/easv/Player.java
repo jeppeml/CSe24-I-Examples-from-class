@@ -1,6 +1,6 @@
 package dk.easv;
 
-public class Player {
+public abstract class Player implements IDrawable {
     private String name;
     private int hp;
     protected int baseDamage;

@@ -9,4 +9,14 @@ public class Wizard extends Player{
     public void doMagicDamage(Player p){
         p.takeDamage(baseDamage);
     }
+
+    public void draw(){
+        System.out.println( "     __/\\__\n" +
+                ". _  \\\\''//\n" +
+                "-( )-/_||_\\\n" +
+                " .'. \\_()_/\n" +
+                "  |   | . \\\n" +
+                "  |   | .  \\\n" +
+                " .'. ,\\_____'.");
+    }
 }
