@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="364.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.assignmentworkoutfiles.gui.controllers.WorkoutAppController">
+   <children>
+       <Button layoutX="14.0" layoutY="224.0" onAction="#onLoadUsersClick" prefHeight="25.0" prefWidth="200.0" text="Load users" />
+      <ListView fx:id="lstUsers" layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button layoutX="228.0" layoutY="224.0" onAction="#onLoadRoutinesClick" prefHeight="25.0" prefWidth="200.0" text="Load workout routines" />
+      <ListView fx:id="lstRoutines" layoutX="228.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button layoutX="443.0" layoutY="224.0" onAction="#onLoadUserWorkoutsClick" prefHeight="25.0" prefWidth="200.0" text="Load user workouts" />
+      <ListView fx:id="lstUserWorkouts" layoutX="443.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button layoutX="14.0" layoutY="255.0" onAction="#onAddUserClick" prefHeight="25.0" prefWidth="200.0" text="Add random user" />
+      <Button layoutX="14.0" layoutY="287.0" onAction="#onDeleteUserClick" prefHeight="25.0" prefWidth="200.0" text="Delete selected user" />
+      <Button layoutX="14.0" layoutY="318.0" onAction="#onUpdateUserClick" prefHeight="25.0" prefWidth="200.0" text="Update selected user name" />
+   </children>
+</AnchorPane>
