@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class UserDAO {
+    private final String splitChar = ";";
     private final Path filePath; // hardcoded path not good
     public UserDAO() {
             filePath = Paths.get("users.csv");
@@ -23,7 +24,7 @@ public class UserDAO {
         if (Files.exists(filePath)) {
             List<String> lines = Files.readAllLines(filePath);
             for (String line : lines) {
-                String[] parts = line.split(",");
+                String[] parts = line.split(splitChar);
                 if (parts.length == 2) {
                     try {
                         int id = Integer.parseInt(parts[0].trim());
@@ -45,7 +46,7 @@ public class UserDAO {
     public void clearAndSave(List<User> users) throws IOException {
         List<String> lines = new ArrayList<>();
         for (User user : users) {
-            lines.add(user.getId() + "," + user.getUsername());
+            lines.add(user.getId() + splitChar + user.getUsername());
         }
         Files.write(filePath, lines); // Overwrites the file
     }
@@ -53,7 +54,7 @@ public class UserDAO {
     // Add a new user (append with no id in User)
     public User add(User user) throws IOException {
         user.setId(getNextId());
-        String newUser =  user.getId() + "," + user.getUsername();
+        String newUser =  user.getId() + splitChar + user.getUsername();
         Files.write(filePath, List.of(newUser), StandardOpenOption.APPEND);
         return user;
     }
