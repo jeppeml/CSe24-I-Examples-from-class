@@ -1,5 +1,6 @@
 package dk.easv.assignmentworkoutfiles.dal;
 
+import dk.easv.assignmentworkoutfiles.be.Routine;
 import dk.easv.assignmentworkoutfiles.be.User;
 
 import java.nio.file.StandardOpenOption;
@@ -93,5 +94,15 @@ public class UserDAO {
             }
         }
         return maxId + 1;
+    }
+
+    public User get(int userId) throws IOException {
+        List<User> all = getAll();
+        for(User user : all){
+            if (user.getId() == userId)
+                return user;
+        }
+
+        return null;
     }
 }

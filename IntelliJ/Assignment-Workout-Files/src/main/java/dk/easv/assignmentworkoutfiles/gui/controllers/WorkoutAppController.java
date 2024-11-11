@@ -38,7 +38,11 @@ public class WorkoutAppController implements Initializable {
     }
 
     public void onLoadRoutinesClick(ActionEvent actionEvent) {
-        // TODO: Implement this
+        try {
+            workoutModel.loadRoutines();
+        } catch (IOException e) {
+            showAlertWindow(e);
+        }
     }
 
     public void onLoadUserWorkoutsClick(ActionEvent actionEvent) {
@@ -48,6 +52,15 @@ public class WorkoutAppController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         lstUsers.setItems(workoutModel.getUsers());
+        lstUserWorkouts.setItems(workoutModel.getUserWorkouts());
+        lstRoutines.setItems(workoutModel.getRoutines());
+        lstUsers.getSelectionModel().selectedItemProperty().addListener((prop, old, current)->{
+            try {
+                workoutModel.loadUserWorkouts(current);
+            } catch (IOException e) {
+                showAlertWindow(e);
+            }
+        });
     }
 
     public void onAddUserClick(ActionEvent actionEvent) {
@@ -84,5 +97,68 @@ public class WorkoutAppController implements Initializable {
     private void showAlertWindow(Exception e){
         Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
         alert.showAndWait();
+    }
+
+    @FXML
+    private void onAddWorkout(ActionEvent actionEvent) {
+        Random r = new Random();
+        String[] routines = {
+                "Push-Ups",
+                "Squats",
+                "Plank",
+                "Jumping Jacks",
+                "Lunges",
+                "Burpees",
+                "Mountain Climbers",
+                "Sit-Ups",
+                "Pull-Ups",
+                "High Knees",
+                "Russian Twists",
+                "Bicycle Crunches",
+                "Jump Rope",
+                "Deadlifts",
+                "Box Jumps"
+        };
+        String[] descriptions = {
+                "A full-body exercise that targets the chest, triceps, and core.",
+                "A lower body exercise that primarily targets the quadriceps, hamstrings, and glutes.",
+                "An isometric core exercise that builds endurance in the abs, back, and shoulders.",
+                "A cardio exercise that improves endurance and helps with weight loss.",
+                "A unilateral lower-body movement targeting the glutes, quadriceps, and core stability.",
+                "A high-intensity full-body workout that burns calories and builds strength.",
+                "An intense cardio and core exercise that engages the entire body.",
+                "An abdominal exercise targeting the rectus abdominis and improving core strength.",
+                "A bodyweight exercise focusing on upper body strength, mainly the back and biceps.",
+                "A cardio move that improves speed and coordination by lifting knees quickly.",
+                "An oblique-targeting exercise that also engages the core through rotational movement.",
+                "A core and cardio exercise that mimics cycling movements while lying on your back.",
+                "A cardio exercise that improves agility, coordination, and cardiovascular health.",
+                "A compound strength exercise focusing on the hamstrings, glutes, and lower back.",
+                "An explosive plyometric movement targeting leg power and coordination."
+        };
+        int randomMinutes = r.nextInt(100);
+        try {
+            Routine routine = workoutModel.addRoutine(
+                    new Routine(
+                            routines[r.nextInt(routines.length)],
+                            descriptions[r.nextInt(descriptions.length)],
+                            randomMinutes
+                    ));
+            lstRoutines.getItems().add(routine);
+        } catch (IOException e) {
+            showAlertWindow(e);
+        }
+
+    }
+
+    @FXML
+    private void onDeleteWorkout(ActionEvent actionEvent) {
+        Routine selected = lstRoutines.getSelectionModel().getSelectedItem();
+        try {
+            workoutModel.deleteRoutine(selected);
+        } catch (IOException e) {
+            showAlertWindow(e);
+        }
+        lstRoutines.getItems().remove(selected);
     }
 }
