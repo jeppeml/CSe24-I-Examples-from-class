@@ -3,15 +3,18 @@ package dk.easv.assignmentworkoutfiles.bll;
 import dk.easv.assignmentworkoutfiles.be.Routine;
 import dk.easv.assignmentworkoutfiles.be.User;
 import dk.easv.assignmentworkoutfiles.be.UserWorkout;
+import dk.easv.assignmentworkoutfiles.dal.IUserDAO;
 import dk.easv.assignmentworkoutfiles.dal.RoutineDAO;
 import dk.easv.assignmentworkoutfiles.dal.UserDAO;
 import dk.easv.assignmentworkoutfiles.dal.UserWorkoutDAO;
+import dk.easv.assignmentworkoutfiles.dal.db.UserDAODB;
+import dk.easv.assignmentworkoutfiles.dal.web.UserDAOWEB;
 import dk.easv.assignmentworkoutfiles.exceptions.WorkoutException;
 
 import java.util.List;
 
 public class WorkoutManager {
-    private final UserDAO userDAO = new UserDAO();
+    private final IUserDAO userDAO = new UserDAO();
     private final UserWorkoutDAO userWorkoutDAO = new UserWorkoutDAO();
     private final RoutineDAO routineDAO = new RoutineDAO();
 

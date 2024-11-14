@@ -14,13 +14,14 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class UserDAO {
+public class UserDAO implements IUserDAO {
     private final String splitChar = ";";
     private final Path filePath; // hardcoded path not good
     public UserDAO() {
             filePath = Paths.get("users.csv");
     }
     // Load users from the CSV file
+    @Override
     public List<User> getAll() throws WorkoutException {
         List<User> users = new ArrayList<>();
         if (Files.exists(filePath)) {
@@ -50,6 +51,7 @@ public class UserDAO {
     }
 
     // Save (overwrite) the entire user list to the CSV file
+    @Override
     public void clearAndSave(List<User> users) throws WorkoutException {
         List<String> lines = new ArrayList<>();
         for (User user : users) {
@@ -63,6 +65,7 @@ public class UserDAO {
     }
 
     // Add a new user (append with no id in User)
+    @Override
     public User add(User user) throws WorkoutException {
         user.setId(getNextId());
         String newUser =  user.getId() + splitChar + user.getUsername();
@@ -75,6 +78,7 @@ public class UserDAO {
     }
 
     // Delete a user by ID (removes the user and rewrites the file)
+    @Override
     public void delete(User user) throws WorkoutException {
         List<User> users = getAll();
         users.removeIf(u -> u.getId() == user.getId());
@@ -82,6 +86,7 @@ public class UserDAO {
     }
 
     // Update a user (updates the user if it exists and rewrites the file)
+    @Override
     public void update(User user) throws WorkoutException {
         List<User> users = getAll();
         boolean userFound = false;
@@ -99,6 +104,7 @@ public class UserDAO {
     }
 
     // Get the next available user ID
+    @Override
     public int getNextId() throws WorkoutException {
         List<User> users = getAll();
         int maxId = 0;
@@ -110,6 +116,7 @@ public class UserDAO {
         return maxId + 1;
     }
 
+    @Override
     public User get(int userId) throws WorkoutException {
         List<User> all = getAll();
         for(User user : all){
