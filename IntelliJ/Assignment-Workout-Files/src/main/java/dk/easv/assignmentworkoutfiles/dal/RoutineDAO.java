@@ -47,6 +47,9 @@ public class RoutineDAO {
                 }
             }
         }
+        else{
+            throw new WorkoutException("Routine file not found: " + filePath);
+        }
         return routines;
     }
 
