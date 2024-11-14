@@ -1,12 +1,14 @@
 package dk.easv.assignmentworkoutfiles.dal;
 
 import dk.easv.assignmentworkoutfiles.be.Routine;
+import dk.easv.assignmentworkoutfiles.exceptions.WorkoutException;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.text.spi.DateFormatProvider;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -19,10 +21,15 @@ public class RoutineDAO {
         filePath = Paths.get("routines.csv");
     }
     // Load users from the CSV file
-    public List<Routine> getAll() throws IOException {
+    public List<Routine> getAll() throws WorkoutException {
         List<Routine> routines = new ArrayList<>();
         if (Files.exists(filePath)) {
-            List<String> lines = Files.readAllLines(filePath);
+            List<String> lines = null;
+            try {
+                lines = Files.readAllLines(filePath);
+            } catch (IOException e) {
+                throw new WorkoutException(e);
+            }
             for (String line : lines) {
                 String[] parts = line.split(splitChar);
                 if (parts.length == 4) {
@@ -65,14 +72,14 @@ public class RoutineDAO {
     }
 
     // Delete a user by ID (removes the user and rewrites the file)
-    public void delete(Routine routine) throws IOException {
+    public void delete(Routine routine) throws WorkoutException {
         List<Routine> routines = getAll();
         routines.removeIf(u -> u.getId() == routine.getId());
         clearAndSave(routines);
     }
 
     // Update a user (updates the user if it exists and rewrites the file)
-    public void update(Routine routine) throws IOException {
+    public void update(Routine routine) throws WorkoutException {
         List<Routine> routines = getAll();
         boolean userFound = false;
         for (int i = 0; i < routines.size(); i++) {

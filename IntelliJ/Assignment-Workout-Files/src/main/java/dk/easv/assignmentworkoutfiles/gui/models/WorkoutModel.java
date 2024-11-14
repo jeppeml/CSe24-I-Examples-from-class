@@ -3,6 +3,7 @@ package dk.easv.assignmentworkoutfiles.gui.models;
 import dk.easv.assignmentworkoutfiles.be.Routine;
 import dk.easv.assignmentworkoutfiles.be.User;
 import dk.easv.assignmentworkoutfiles.be.UserWorkout;
+import dk.easv.assignmentworkoutfiles.exceptions.WorkoutException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import dk.easv.assignmentworkoutfiles.bll.*;
@@ -16,7 +17,7 @@ public class WorkoutModel {
     private final ObservableList<UserWorkout> userWorkouts = FXCollections.observableArrayList();
     private final ObservableList<Routine> routines = FXCollections.observableArrayList();
 
-    public void loadRoutines() throws IOException {
+    public void loadRoutines() throws WorkoutException {
         routines.setAll(workoutManager.getRoutines());
     }
 

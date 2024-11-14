@@ -6,6 +6,7 @@ import dk.easv.assignmentworkoutfiles.be.UserWorkout;
 import dk.easv.assignmentworkoutfiles.dal.RoutineDAO;
 import dk.easv.assignmentworkoutfiles.dal.UserDAO;
 import dk.easv.assignmentworkoutfiles.dal.UserWorkoutDAO;
+import dk.easv.assignmentworkoutfiles.exceptions.WorkoutException;
 
 import java.io.IOException;
 import java.util.List;
@@ -58,7 +59,7 @@ public class WorkoutManager {
         return userWorkoutDAO.getUserWorkouts(u);
     }
 
-    public List<Routine> getRoutines() throws IOException {
+    public List<Routine> getRoutines() throws WorkoutException {
         return routineDAO.getAll();
     }
 

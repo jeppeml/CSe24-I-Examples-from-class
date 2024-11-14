@@ -3,6 +3,7 @@ package dk.easv.assignmentworkoutfiles.gui.controllers;
 import dk.easv.assignmentworkoutfiles.be.Routine;
 import dk.easv.assignmentworkoutfiles.be.User;
 import dk.easv.assignmentworkoutfiles.be.UserWorkout;
+import dk.easv.assignmentworkoutfiles.exceptions.WorkoutException;
 import dk.easv.assignmentworkoutfiles.gui.models.WorkoutModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,7 +41,7 @@ public class WorkoutAppController implements Initializable {
     public void onLoadRoutinesClick(ActionEvent actionEvent) {
         try {
             workoutModel.loadRoutines();
-        } catch (IOException e) {
+        } catch (WorkoutException e) {
             showAlertWindow(e);
         }
     }
