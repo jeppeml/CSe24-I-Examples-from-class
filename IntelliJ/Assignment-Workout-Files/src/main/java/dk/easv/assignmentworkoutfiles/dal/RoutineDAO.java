@@ -56,18 +56,26 @@ public class RoutineDAO {
     }
 
     // Save (overwrite) the entire user list to the CSV file
-    public void clearAndSave(List<Routine> routines) throws IOException {
+    public void clearAndSave(List<Routine> routines) throws WorkoutException {
         List<String> lines = new ArrayList<>();
         for (Routine routine : routines) {
             lines.add(getAsCSVString(routine));
         }
-        Files.write(filePath, lines); // Overwrites the file
+        try {
+            Files.write(filePath, lines); // Overwrites the file
+        } catch (IOException e) {
+            throw new WorkoutException(e);
+        }
     }
 
     // Add a new user (append with no id in User)
-    public Routine add(Routine routine) throws IOException {
+    public Routine add(Routine routine) throws WorkoutException {
         routine.setId(getNextId());
-        Files.write(filePath, List.of(getAsCSVString(routine)), StandardOpenOption.APPEND);
+        try {
+            Files.write(filePath, List.of(getAsCSVString(routine)), StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            throw new WorkoutException(e);
+        }
         return routine;
     }
 
@@ -96,7 +104,7 @@ public class RoutineDAO {
     }
 
     // Get the next available user ID
-    public int getNextId() throws IOException {
+    public int getNextId() throws WorkoutException {
         List<Routine> routines = getAll();
         int maxId = 0;
         for (Routine routine : routines) {
@@ -107,7 +115,7 @@ public class RoutineDAO {
         return maxId + 1;
     }
 
-    public Routine get(int routineId) throws IOException {
+    public Routine get(int routineId) throws WorkoutException {
         List<Routine> all = getAll();
         for(Routine routine : all){
             if (routine.getId() == routineId)

@@ -32,7 +32,7 @@ public class WorkoutAppController implements Initializable {
     public void onLoadUsersClick(ActionEvent actionEvent) {
         try {
             workoutModel.loadUsers();
-        } catch (IOException e) {
+        } catch (WorkoutException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
             alert.showAndWait();
         }
@@ -58,7 +58,7 @@ public class WorkoutAppController implements Initializable {
         lstUsers.getSelectionModel().selectedItemProperty().addListener((prop, old, current)->{
             try {
                 workoutModel.loadUserWorkouts(current);
-            } catch (IOException e) {
+            } catch (WorkoutException e) {
                 showAlertWindow(e);
             }
         });
@@ -67,7 +67,7 @@ public class WorkoutAppController implements Initializable {
     public void onAddUserClick(ActionEvent actionEvent) {
         try {
             workoutModel.addUser(getRandomName());
-        } catch (IOException e) {
+        } catch (WorkoutException e) {
             showAlertWindow(e);
         }
     }
@@ -75,7 +75,7 @@ public class WorkoutAppController implements Initializable {
         User selectedUser = lstUsers.getSelectionModel().getSelectedItem();
         try {
             workoutModel.deleteUser(selectedUser);
-        } catch (IOException e) {
+        } catch (WorkoutException e) {
             showAlertWindow(e);
         }
     }
@@ -84,7 +84,7 @@ public class WorkoutAppController implements Initializable {
         selectedUser.setUsername(getRandomName());
         try {
             workoutModel.updateUser(selectedUser);
-        } catch (IOException e) {
+        } catch (WorkoutException e) {
             showAlertWindow(e);
         }
     }
@@ -146,7 +146,7 @@ public class WorkoutAppController implements Initializable {
                             randomMinutes
                     ));
             lstRoutines.getItems().add(routine);
-        } catch (IOException e) {
+        } catch (WorkoutException e) {
             showAlertWindow(e);
         }
 
@@ -157,7 +157,7 @@ public class WorkoutAppController implements Initializable {
         Routine selected = lstRoutines.getSelectionModel().getSelectedItem();
         try {
             workoutModel.deleteRoutine(selected);
-        } catch (IOException e) {
+        } catch (WorkoutException e) {
             showAlertWindow(e);
         }
         lstRoutines.getItems().remove(selected);

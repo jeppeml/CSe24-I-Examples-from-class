@@ -2,6 +2,7 @@ package dk.easv.assignmentworkoutfiles.dal;
 
 import dk.easv.assignmentworkoutfiles.be.User;
 import dk.easv.assignmentworkoutfiles.be.UserWorkout;
+import dk.easv.assignmentworkoutfiles.exceptions.WorkoutException;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -22,17 +23,22 @@ public class UserWorkoutDAO {
         filePath = Paths.get("user_workouts.csv");
     }
 
-    public List<UserWorkout> getUserWorkouts(User u) throws IOException {
+    public List<UserWorkout> getUserWorkouts(User u) throws WorkoutException {
         if(u!=null) {
             return getAll().stream().filter((userWorkout) -> userWorkout.getUser().getId() == u.getId()).toList();
         }
         else return new ArrayList<>(); // User not found
     }
 
-    public List<UserWorkout> getAll() throws IOException {
+    public List<UserWorkout> getAll() throws WorkoutException {
         List<UserWorkout> userWorkouts = new ArrayList<>();
         if (Files.exists(filePath)) {
-            List<String> lines = Files.readAllLines(filePath);
+            List<String> lines = null;
+            try {
+                lines = Files.readAllLines(filePath);
+            } catch (IOException e) {
+                throw new WorkoutException(e);
+            }
             for (String line : lines) {
                 String[] parts = line.split(splitChar);
                 if (parts.length == 4) {
@@ -57,27 +63,35 @@ public class UserWorkoutDAO {
         return userWorkout.getId() + splitChar + userWorkout.getUser().getId() + splitChar + userWorkout.getRoutine().getId() + splitChar + userWorkout.getDate();
     }
 
-    public void clearAndSave(List<UserWorkout> userWorkouts) throws IOException {
+    public void clearAndSave(List<UserWorkout> userWorkouts) throws WorkoutException {
         List<String> lines = new ArrayList<>();
         for (UserWorkout userWorkout : userWorkouts) {
             lines.add(getAsCSVString(userWorkout));
         }
-        Files.write(filePath, lines); // Overwrites the file
+        try {
+            Files.write(filePath, lines); // Overwrites the file
+        } catch (IOException e) {
+            throw new WorkoutException(e);
+        }
     }
 
-    public UserWorkout add(UserWorkout userWorkout) throws IOException {
+    public UserWorkout add(UserWorkout userWorkout) throws WorkoutException {
         userWorkout.setId(getNextId());
-        Files.write(filePath, List.of(getAsCSVString(userWorkout)), StandardOpenOption.APPEND);
+        try {
+            Files.write(filePath, List.of(getAsCSVString(userWorkout)), StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            throw new WorkoutException(e);
+        }
         return userWorkout;
     }
 
-    public void delete(UserWorkout userWorkout) throws IOException {
+    public void delete(UserWorkout userWorkout) throws WorkoutException {
         List<UserWorkout> userWorkouts = getAll();
         userWorkouts.removeIf(u -> u.getId() == userWorkout.getId());
         clearAndSave(userWorkouts);
     }
 
-    public void update(UserWorkout userWorkout) throws IOException {
+    public void update(UserWorkout userWorkout) throws WorkoutException {
         List<UserWorkout> userWorkouts = getAll();
         boolean userFound = false;
         for (int i = 0; i < userWorkouts.size(); i++) {
@@ -94,7 +108,7 @@ public class UserWorkoutDAO {
     }
 
     // Get the next available user ID
-    public int getNextId() throws IOException {
+    public int getNextId() throws WorkoutException {
         List<UserWorkout> userWorkouts = getAll();
         int maxId = 0;
         for (UserWorkout userWorkout : userWorkouts) {

@@ -21,7 +21,7 @@ public class WorkoutModel {
         routines.setAll(workoutManager.getRoutines());
     }
 
-    public void loadUserWorkouts(User u) throws IOException {
+    public void loadUserWorkouts(User u) throws WorkoutException {
         userWorkouts.setAll(workoutManager.getUserWorkouts(u));
     }
 
@@ -29,7 +29,7 @@ public class WorkoutModel {
         return userWorkouts;
     }
 
-    public void loadUsers() throws IOException {
+    public void loadUsers() throws WorkoutException {
         users.setAll(workoutManager.getUsers());
     }
 
@@ -39,17 +39,17 @@ public class WorkoutModel {
     }
 
     // Add a new user
-    public void addUser(String userName) throws IOException {
+    public void addUser(String userName) throws WorkoutException {
         User newUser = workoutManager.addUser(new User(-1, userName)); // create user with fake id, get user back with right id
         users.add(newUser);
     }
 
-    public void deleteUser(User user) throws IOException {
+    public void deleteUser(User user) throws WorkoutException {
         workoutManager.deleteUser(user);
         users.remove(user);
     }
 
-    public void updateUser(User user) throws IOException {
+    public void updateUser(User user) throws WorkoutException {
         workoutManager.updateUser(user);
         users.remove(user);
         users.add(user);
@@ -59,11 +59,11 @@ public class WorkoutModel {
         return routines;
     }
 
-    public Routine addRoutine(Routine routine) throws IOException {
+    public Routine addRoutine(Routine routine) throws WorkoutException {
         return workoutManager.addRoutine(routine);
     }
 
-    public void deleteRoutine(Routine routine) throws IOException {
+    public void deleteRoutine(Routine routine) throws WorkoutException {
         workoutManager.deleteRoutine(routine);
     }
 }
