@@ -14,22 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAODB implements IUserDAO {
-
+    private DBConnection con = new DBConnection();
     @Override
     public List<User> getAll() throws WorkoutException {
         List<User> users = new ArrayList<>();
-
-        SQLServerDataSource ds;
-        ds = new SQLServerDataSource();
-        ds.setDatabaseName("cse2024e30_workout"); // make this unique as names are shared on server
-        ds.setUser("CSe2024b_e_30"); // Use your own username
-        ds.setPassword("CSe2024bE30!24"); // Use your own password
-        ds.setServerName("EASV-DB4");
-        ds.setPortNumber(1433);
-        ds.setTrustServerCertificate(true);
-
         try {
-            Connection c = ds.getConnection();
+            Connection c = con.getConnection();
             String sql = "SELECT * FROM users";
             PreparedStatement stmt = c.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
@@ -56,17 +46,44 @@ public class UserDAODB implements IUserDAO {
 
     @Override
     public User add(User user) throws WorkoutException {
-        return null;
+        try {
+            Connection c = con.getConnection();
+            String sql = "INSERT INTO users (id, username) VALUES (?,?)";
+            PreparedStatement stmt = c.prepareStatement(sql);
+            stmt.setInt(1, user.getId());
+            stmt.setString(2, user.getUsername());
+            stmt.execute();
+        } catch (SQLException e) {
+            throw new WorkoutException(e);
+        }
+        return user;
     }
 
     @Override
     public void delete(User user) throws WorkoutException {
-
+        try {
+            Connection c = con.getConnection();
+            String sql = "DELETE FROM users WHERE id=?";
+            PreparedStatement stmt = c.prepareStatement(sql);
+            stmt.setInt(1, user.getId());
+            stmt.execute();
+        } catch (SQLException e) {
+            throw new WorkoutException(e);
+        }
     }
 
     @Override
     public void update(User user) throws WorkoutException {
-
+        try {
+            Connection c = con.getConnection();
+            String sql = "UPDATE users SET username=? WHERE id=?";
+            PreparedStatement stmt = c.prepareStatement(sql);
+            stmt.setString(1, user.getUsername());
+            stmt.setInt(2, user.getId());
+            stmt.execute();
+        } catch (SQLException e) {
+            throw new WorkoutException(e);
+        }
     }
 
     @Override
@@ -76,6 +93,22 @@ public class UserDAODB implements IUserDAO {
 
     @Override
     public User get(int userId) throws WorkoutException {
-        return null;
+        try {
+            Connection c = con.getConnection();
+            String sql = "SELECT * FROM users WHERE id=?";
+            PreparedStatement stmt = c.prepareStatement(sql);
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){ // while there are rows
+                int id = rs.getInt("id");
+                String username = rs.getString("username");
+                User user = new User(id, username);
+                return user;
+            }
+
+        } catch (SQLException e) {
+            throw new WorkoutException(e);
+        }
+        throw new WorkoutException("User not found: " + userId);
     }
 }
