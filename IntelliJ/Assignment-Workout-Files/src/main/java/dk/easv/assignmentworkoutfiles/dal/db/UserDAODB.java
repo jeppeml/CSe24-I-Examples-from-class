@@ -1,6 +1,5 @@
 package dk.easv.assignmentworkoutfiles.dal.db;
 
-import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dk.easv.assignmentworkoutfiles.be.User;
 import dk.easv.assignmentworkoutfiles.dal.IUserDAO;
@@ -37,11 +36,6 @@ public class UserDAODB implements IUserDAO {
         }
 
         return users;
-    }
-
-    @Override
-    public void clearAndSave(List<User> users) throws WorkoutException {
-
     }
 
     @Override
@@ -84,11 +78,6 @@ public class UserDAODB implements IUserDAO {
         } catch (SQLException e) {
             throw new WorkoutException(e);
         }
-    }
-
-    @Override
-    public int getNextId() throws WorkoutException {
-        return 0;
     }
 
     @Override

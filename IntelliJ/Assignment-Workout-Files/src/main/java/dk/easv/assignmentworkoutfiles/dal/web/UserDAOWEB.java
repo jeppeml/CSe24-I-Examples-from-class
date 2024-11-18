@@ -12,10 +12,6 @@ public class UserDAOWEB implements IUserDAO {
         return List.of();
     }
 
-    @Override
-    public void clearAndSave(List<User> users) throws WorkoutException {
-
-    }
 
     @Override
     public User add(User user) throws WorkoutException {
@@ -32,10 +28,6 @@ public class UserDAOWEB implements IUserDAO {
 
     }
 
-    @Override
-    public int getNextId() throws WorkoutException {
-        return 0;
-    }
 
     @Override
     public User get(int userId) throws WorkoutException {

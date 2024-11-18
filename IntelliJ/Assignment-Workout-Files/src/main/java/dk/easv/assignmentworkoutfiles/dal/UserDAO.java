@@ -1,6 +1,5 @@
 package dk.easv.assignmentworkoutfiles.dal;
 
-import dk.easv.assignmentworkoutfiles.be.Routine;
 import dk.easv.assignmentworkoutfiles.be.User;
 import dk.easv.assignmentworkoutfiles.exceptions.WorkoutException;
 
@@ -51,8 +50,8 @@ public class UserDAO implements IUserDAO {
     }
 
     // Save (overwrite) the entire user list to the CSV file
-    @Override
-    public void clearAndSave(List<User> users) throws WorkoutException {
+
+    private void clearAndSave(List<User> users) throws WorkoutException {
         List<String> lines = new ArrayList<>();
         for (User user : users) {
             lines.add(user.getId() + splitChar + user.getUsername());
@@ -104,8 +103,7 @@ public class UserDAO implements IUserDAO {
     }
 
     // Get the next available user ID
-    @Override
-    public int getNextId() throws WorkoutException {
+    private int getNextId() throws WorkoutException {
         List<User> users = getAll();
         int maxId = 0;
         for (User user : users) {
