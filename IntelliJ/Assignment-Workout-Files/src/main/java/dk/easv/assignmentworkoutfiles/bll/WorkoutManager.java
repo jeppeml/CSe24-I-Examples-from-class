@@ -14,7 +14,7 @@ import dk.easv.assignmentworkoutfiles.exceptions.WorkoutException;
 import java.util.List;
 
 public class WorkoutManager {
-    private final IUserDAO userDAO = new UserDAO();
+    private final IUserDAO userDAO = new UserDAODB();
     private final UserWorkoutDAO userWorkoutDAO = new UserWorkoutDAO();
     private final RoutineDAO routineDAO = new RoutineDAO();
 
