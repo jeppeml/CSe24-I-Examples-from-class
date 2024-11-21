@@ -28,13 +28,9 @@ public class UserDAODB implements IUserDAO {
                 User user = new User(id, username);
                 users.add(user);
             }
-
-        } catch (SQLServerException e) {
-            throw new WorkoutException(e);
         } catch (SQLException e) {
             throw new WorkoutException(e);
         }
-
         return users;
     }
 
