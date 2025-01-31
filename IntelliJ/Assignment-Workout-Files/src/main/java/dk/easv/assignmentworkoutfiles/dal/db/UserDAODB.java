@@ -23,6 +23,7 @@ public class UserDAODB implements IUserDAO {
             PreparedStatement stmt = c.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){ // while there are rows
+
                 int id = rs.getInt("id");
                 String username = rs.getString("username");
                 User user = new User(id, username);
