@@ -1,6 +1,7 @@
 package dk.easv.assignmentworkoutfiles.dal;
 
 import dk.easv.assignmentworkoutfiles.be.User;
+import dk.easv.assignmentworkoutfiles.exceptions.WorkoutException;
 
 import java.nio.file.StandardOpenOption;
 import java.util.List;
@@ -12,17 +13,23 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class UserDAO {
+public class UserDAO implements IUserDAO {
     private final String splitChar = ";";
     private final Path filePath; // hardcoded path not good
     public UserDAO() {
             filePath = Paths.get("users.csv");
     }
     // Load users from the CSV file
-    public List<User> getAll() throws IOException {
+    @Override
+    public List<User> getAll() throws WorkoutException {
         List<User> users = new ArrayList<>();
         if (Files.exists(filePath)) {
-            List<String> lines = Files.readAllLines(filePath);
+            List<String> lines = null;
+            try {
+                lines = Files.readAllLines(filePath);
+            } catch (IOException e) {
+                throw new WorkoutException(e);
+            }
             for (String line : lines) {
                 String[] parts = line.split(splitChar);
                 if (parts.length == 2) {
@@ -43,31 +50,43 @@ public class UserDAO {
     }
 
     // Save (overwrite) the entire user list to the CSV file
-    public void clearAndSave(List<User> users) throws IOException {
+
+    private void clearAndSave(List<User> users) throws WorkoutException {
         List<String> lines = new ArrayList<>();
         for (User user : users) {
             lines.add(user.getId() + splitChar + user.getUsername());
         }
-        Files.write(filePath, lines); // Overwrites the file
+        try {
+            Files.write(filePath, lines); // Overwrites the file
+        } catch (IOException e) {
+            throw new WorkoutException(e);
+        }
     }
 
     // Add a new user (append with no id in User)
-    public User add(User user) throws IOException {
+    @Override
+    public User add(User user) throws WorkoutException {
         user.setId(getNextId());
         String newUser =  user.getId() + splitChar + user.getUsername();
-        Files.write(filePath, List.of(newUser), StandardOpenOption.APPEND);
+        try {
+            Files.write(filePath, List.of(newUser), StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            throw new WorkoutException(e);
+        }
         return user;
     }
 
     // Delete a user by ID (removes the user and rewrites the file)
-    public void delete(User user) throws IOException {
+    @Override
+    public void delete(User user) throws WorkoutException {
         List<User> users = getAll();
         users.removeIf(u -> u.getId() == user.getId());
         clearAndSave(users);
     }
 
     // Update a user (updates the user if it exists and rewrites the file)
-    public void update(User user) throws IOException {
+    @Override
+    public void update(User user) throws WorkoutException {
         List<User> users = getAll();
         boolean userFound = false;
         for (int i = 0; i < users.size(); i++) {
@@ -84,7 +103,7 @@ public class UserDAO {
     }
 
     // Get the next available user ID
-    public int getNextId() throws IOException {
+    private int getNextId() throws WorkoutException {
         List<User> users = getAll();
         int maxId = 0;
         for (User user : users) {
@@ -93,5 +112,16 @@ public class UserDAO {
             }
         }
         return maxId + 1;
+    }
+
+    @Override
+    public User get(int userId) throws WorkoutException {
+        List<User> all = getAll();
+        for(User user : all){
+            if (user.getId() == userId)
+                return user;
+        }
+
+        return null;
     }
 }
