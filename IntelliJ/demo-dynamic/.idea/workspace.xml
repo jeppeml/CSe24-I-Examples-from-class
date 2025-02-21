@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ec8f793e-884d-4166-b209-2746b805f1d1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Assignment-Workout-Files/routines.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../Assignment-Workout-Files/routines.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Assignment-Workout-Files/src/main/java/dk/easv/assignmentworkoutfiles/dal/db/UserDAODB.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Assignment-Workout-Files/src/main/java/dk/easv/assignmentworkoutfiles/dal/db/UserDAODB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Assignment-Workout-Files/users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../Assignment-Workout-Files/users.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,9 +22,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2sO2MJECSolFHnVTOppxQqSZ6yq" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -36,7 +34,7 @@
   "keyToString": {
     "Application.HelloApplication.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "finish-file-based",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -83,6 +81,7 @@
       <option name="presentableId" value="Default" />
       <updated>1738312252667</updated>
       <workItem from="1738312253725" duration="3786000" />
+      <workItem from="1738661451346" duration="2737000" />
     </task>
     <servers />
   </component>

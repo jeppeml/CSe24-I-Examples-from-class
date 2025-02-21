@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="528.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.test.gui.controller.MainController">
+<Button layoutX="13.0" layoutY="488.0" onAction="#clickBtn" prefHeight="26.0" prefWidth="816.0" text="Go go go transactions!">Click me!</Button>
+   <TextArea fx:id="text1" editable="false" layoutX="12.0" layoutY="238.0" prefHeight="238.0" prefWidth="400.0" wrapText="true" />
+   <TextArea fx:id="text2" editable="false" layoutX="430.0" layoutY="238.0" prefHeight="238.0" prefWidth="400.0" wrapText="true" />
+   <TextField fx:id="txtBalance1" editable="false" layoutX="204.0" layoutY="207.0" prefHeight="26.0" prefWidth="110.0" />
+   <TextField fx:id="txtBalance2" editable="false" layoutX="644.0" layoutY="207.0" prefHeight="26.0" prefWidth="110.0" />
+   <Label layoutX="13.0" layoutY="211.0" text="Person 1 - Cash" />
+   <Label layoutX="431.0" layoutY="212.0" text="Person 2 - Cash" />
+   <TextField fx:id="txtStartBalance" editable="false" layoutX="173.0" layoutY="25.0" prefHeight="26.0" prefWidth="194.0" />
+   <Label layoutX="12.0" layoutY="30.0" text="Start balance bank account" />
+   <TextField fx:id="txtEndBalance" editable="false" layoutX="173.0" layoutY="61.0" prefHeight="26.0" prefWidth="194.0" />
+   <Label layoutX="12.0" layoutY="66.0" text="End balance bank account" />
+   <TextField fx:id="txtDiff" editable="false" layoutX="173.0" layoutY="95.0" prefHeight="26.0" prefWidth="194.0" />
+   <Label layoutX="12.0" layoutY="100.0" text="Difference" />
+   <TextField fx:id="txtPSum" editable="false" layoutX="173.0" layoutY="132.0" prefHeight="26.0" prefWidth="194.0" />
+   <Label layoutX="12.0" layoutY="137.0" text="Persons withdrawed" />
+   <TextField fx:id="txtP1Failed" layoutX="204.0" layoutY="176.0" prefHeight="26.0" prefWidth="110.0" />
+   <TextField fx:id="txtP2Failed" layoutX="644.0" layoutY="176.0" prefHeight="26.0" prefWidth="110.0" />
+   <Label layoutX="12.0" layoutY="181.0" text="Person 1 - Failed transactions" />
+   <Label layoutX="431.0" layoutY="181.0" text="Person 2 - Failed transactions" />
+   <Label layoutX="475.0" layoutY="31.0" text="Transactions">
+      <font>
+         <Font size="48.0" />
+      </font>
+   </Label>
+   <MFXToggleButton fx:id="toggleTrans" layoutX="512.0" layoutY="84.0" prefHeight="66.0" prefWidth="216.0" text="ON/OFF" />
+</AnchorPane>

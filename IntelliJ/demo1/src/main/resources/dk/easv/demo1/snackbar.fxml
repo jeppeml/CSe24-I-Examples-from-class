@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox spacing="5.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.demo1.SnackbarController">
+   <children>
+      <ImageView fx:id="imgIcon" fitHeight="47.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="lblWrning" text="Warning: you have done something completely wrong." />
+   </children>
+</HBox>

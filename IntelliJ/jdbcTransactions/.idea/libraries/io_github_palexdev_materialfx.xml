@@ -1,0 +1,23 @@
+<component name="libraryTable">
+  <library name="io.github.palexdev.materialfx" type="repository">
+    <properties maven-id="io.github.palexdev:materialfx:11.17.0" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/materialfx-11.17.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mfxcore-11.8.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mfxlocalization-11.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javafx-controls-21.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javafx-controls-21-mac-aarch64.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javafx-graphics-21.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javafx-graphics-21-mac-aarch64.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javafx-base-21.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javafx-base-21-mac-aarch64.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javafx-fxml-21.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javafx-fxml-21-mac-aarch64.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mfxresources-11.9.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mfxeffects-11.3.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/virtualizedfx-11.9.6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
