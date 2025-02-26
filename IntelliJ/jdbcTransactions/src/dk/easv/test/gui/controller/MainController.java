@@ -166,10 +166,9 @@ public class MainController implements Initializable {
                 con.setTransactionIsolation(TRANSACTION_SERIALIZABLE);
             }
 
-            double balance = getBalance(p.getId(), con); // 1000
-            // balance is updated to 800
+            double balance = getBalance(p.getId(), con);
             // calculate new balance MEMORY
-            double newBalance = balance - amount; // 1000 - 100 = 900
+            double newBalance = balance - amount; 
 
             // persistance to DB
             updateBalance(p.getId(), newBalance, con); // set to 900
